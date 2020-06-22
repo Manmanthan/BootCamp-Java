@@ -9,8 +9,8 @@ public class BTDriver {
 //        tree.display();
 
         // QUESTIONS AHEAD ==>
-        int[] pre = {50, 25, 12, 39, 75, 41, 87};
-        int[] in = {12, 25, 39, 50, 41, 75, 87};
+        int[] pre = {8 ,4 ,5 ,2 ,6 ,7 ,3 ,1};
+        int[] in = {4 ,8 ,2 ,5 ,1 ,6 ,3 ,7};
         BT tree = new BT(pre, in);
         tree.display();
 //

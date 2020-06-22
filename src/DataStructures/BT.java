@@ -270,7 +270,7 @@ class BT {
     }
 
     public BT(int[] pre, int[] in){
-        this.root = this.constructBT(pre, 0, pre.length-1, in, 0, in.length-1);
+        this.root = this.constructBTPostIn(pre, 0, pre.length-1, in, 0, in.length-1);
     }
 
     private Node constructBT(int[] pre, int presi, int preei, int[] in, int insi, int inei){
@@ -292,6 +292,28 @@ class BT {
 
         node.left = constructBT(pre, presi+1, preei, in, insi, si - 1);
         node.right = constructBT(pre, presi + lsi + 1, preei, in, si+1, inei);
+        return node;
+    }
+
+    private Node constructBTPostIn(int[] po, int posi, int poei, int[] in, int insi, int inei) {
+        if (posi > poei || insi > inei)
+            return null;
+        Node node = new Node(po[poei], null, null);
+        this.size++;
+
+        int si = -1;
+        for (int i = 0; i <= inei; i++) {
+            if (in[i] == node.data) {
+                si = i;
+                break;
+            }
+        }
+
+        int lsi = si - insi;
+
+        node.left = constructBTPostIn(po, posi, posi+lsi-1, in, insi, si - 1);
+        node.right = constructBTPostIn(po, posi+lsi, poei-1, in, si+1, inei);
+
         return node;
     }
 
