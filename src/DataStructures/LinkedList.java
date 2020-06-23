@@ -1,5 +1,9 @@
 package DataStructures;
 
+import Questions.SpiralPrint;
+
+import java.util.HashSet;
+
 class LinkedList {
 
     private class Node {
@@ -190,6 +194,24 @@ class LinkedList {
             left++;
             right--;
         }
+    }
+
+    public boolean removeloop(){
+        HashSet<Node> set = new HashSet<Node>();
+        Node prev = null;
+        Node head = this.head;
+
+        while (head != null){
+            if (set.contains(head)){
+                prev.next = null;
+                return true;
+            }else {
+                set.add(head);
+                prev = head;
+                head = head.next;
+            }
+        }
+        return false;
     }
 }
 
