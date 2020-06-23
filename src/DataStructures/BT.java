@@ -317,4 +317,35 @@ class BT {
         return node;
     }
 
+    private class BalancedPair{
+        int height;
+        boolean isBalanced;
+    }
+
+    public boolean isBalanced() {
+        return this.isBalanced(this.root).isBalanced;
+    }
+
+    private BalancedPair isBalanced(Node node) {
+        if (node == null) {
+            BalancedPair np = new BalancedPair();
+            np.height = -1;
+            np.isBalanced = true;
+            return np;
+        }
+
+        BalancedPair lp = this.isBalanced(node.left);
+        BalancedPair rp = this.isBalanced(node.right);
+
+        BalancedPair mp = new BalancedPair();
+        mp.height = Math.max(rp.height, lp.height) + 1;
+
+        if (Math.abs(lp.height - rp.height) <= 0 && lp.isBalanced && rp.isBalanced) {
+            mp.isBalanced = true;
+        }else {
+            mp.isBalanced = false;
+        }
+        return mp;
+    }
+
 }
