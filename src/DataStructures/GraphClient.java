@@ -1,7 +1,7 @@
 package DataStructures;
 
 public class GraphClient {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Graph graph = new Graph();
 
         graph.addVertex("A");
@@ -21,15 +21,16 @@ public class GraphClient {
         graph.addEdge("F", "G", 3);
         graph.addEdge("E", "G", 3);
 
-//        System.out.println(graph.numVtces());
-//        System.out.println(graph.numEdges());
-//        graph.display();
-//
-//        graph.removeEdge("D", "E");
-//        graph.removeVertex("A");
-//        graph.display();
+        System.out.println(graph.numVtces());
+        System.out.println(graph.numEdges());
+        graph.display();
 
-        System.out.println("Answer is: "+ graph.hasPath("A", "G"));
-        graph.dft();
+        System.out.println(graph.hasPath("A", "G"));
+
+        graph.removeEdge("D", "E");
+        graph.removeVertex("A");
+        graph.display();
+
+
     }
 }
