@@ -3,7 +3,7 @@ package DataStructures;
 import java.util.Scanner;
 
 class BST {
-    private class Node {
+    class Node {
         int data;
         Node left;
         Node right;
