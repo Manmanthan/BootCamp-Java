@@ -1,5 +1,7 @@
 package DivideAndConquer;
 
+import javax.imageio.stream.ImageOutputStreamImpl;
+
 public class BinarySearch {
 
     public static void main(String[] args) {
@@ -11,43 +13,15 @@ public class BinarySearch {
         System.out.println(binarySearch(arr, 4));
     }
 
-    public static int binarySearch(int[] arr, int item) {
-
-        int lo = 0;
-        int hi = arr.length - 1;
-
-        while (lo <= hi) {
-
-            int mid = (lo + hi) / 2;
-
-            if (arr[mid] < item) {
-                lo = mid + 1;
-            } else if (arr[mid] > item) {
-                hi = mid - 1;
-            } else {
-                return mid;
-            }
+    static int binarySearch(int arr[], int x) {
+        int start = 0;
+        int end = arr.length;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] == x) return mid;
+            if (arr[mid] > x) end = mid - 1;
+            else start = mid + 1;
         }
-        return -1;
-    }
-
-    public static int BinarySearchRecursive(int lo, int hi, int item, int[] arr) {
-
-        if (hi >= lo) {
-
-            int mid = (lo + hi) / 2;
-
-            if (arr[mid] == item){
-                return mid;
-            }
-
-            if (arr[mid] < item){
-                return BinarySearchRecursive(mid+1, hi, item, arr);
-            }
-
-            return BinarySearchRecursive(lo, mid-1, item, arr);
-        }
-
         return -1;
     }
 }

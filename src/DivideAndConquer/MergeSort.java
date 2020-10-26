@@ -12,46 +12,49 @@ public class MergeSort {
         }
     }
 
-    public static void mergeSort(int[] arr, int start, int end) {
+    static void mergeSort(int arr[], int start, int end) {
         if (start < end) {
             int mid = (start + end) / 2;
+            //Sort first and second halves
             mergeSort(arr, start, mid);
             mergeSort(arr, mid + 1, end);
+            //Visualizing this one given array as two separate sorted arrays
             merge(arr, start, mid, end);
         }
     }
 
-    private static void merge(int[] arr, int start, int mid, int end) {
-        int[] temp = new int[end - start + 1];
+    static void merge(int[] arr, int start, int mid, int end) {
+        int n1 = mid - start + 1;
+        int n2 = end - mid;
 
-        int i = start, j = mid + 1, k = 0;
+        // Create temp arrays.(Visualized Earlier)
+        int F[] = new int[n1];
+        int S[] = new int[n2];
+        for (int i = 0; i < n1; i++)
+            F[i] = arr[start + i];
+        for (int i = 0; i < n2; i++)
+            S[i] = arr[mid + 1 + i];
 
-        while (i <= mid && j <= end) {
-            if (arr[i] <= arr[j]) {
-                temp[k] = arr[i];
-                k++;
+        int i = 0, j = 0, k = start;
+        while (i < n1 && j < n2) {
+            if (F[i] < S[j]) {
+                arr[k] = F[i];
                 i++;
             } else {
-                temp[k] = arr[j];
-                k++;
+                arr[k] = S[j];
                 j++;
             }
-        }
-
-        while (i <= mid) {
-            temp[k] = arr[i];
             k++;
-            i++;
         }
-
-        while (j <= end) {
-            temp[k] = arr[j];
+        while (i < n1) {
+            arr[k] = F[i];
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            arr[k] = S[j];
             k++;
             j++;
-        }
-
-        for (int x = start; x <= end; x++) {
-            arr[x] = temp[x - start];
         }
     }
 }
