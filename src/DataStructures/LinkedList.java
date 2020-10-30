@@ -1,7 +1,5 @@
 package DataStructures;
 
-import Questions.SpiralPrint;
-
 import java.util.HashSet;
 
 class LinkedList {
